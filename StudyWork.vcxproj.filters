@@ -18,5 +18,13 @@
     <ClCompile Include="StudyWork.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="phoneCall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PhoneCall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
