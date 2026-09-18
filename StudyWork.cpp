@@ -1,19 +1,40 @@
 #include <iostream>
-#include "PhoneCall.h"
+#include "Fraction.h"
 
 using namespace std;
 
 int main()
 {
-    PhoneCall phoneCall;
+    Fraction first;
+    Fraction second;
 
-    phoneCall.Init(5, 2.5);
+    first.Init(7, 50);
+    second.Init(2, 25);
 
-    cout << phoneCall.ToString() << endl;
+    cout << "First fraction: " << first.toString() << endl;
+    cout << "Second fraction: " << second.toString() << endl;
 
-    phoneCall.Read();
+    Fraction sum = first.Add(second);
+    Fraction difference = first.Subtract(second);
+    Fraction product = first.Multiply(second);
 
-    cout << "\n" << phoneCall.ToString() << endl;
+    cout << "\nAddition: " << sum.toString() << endl;
+    cout << "Subtraction: " << difference.toString() << endl;
+    cout << "Multiplication: " << product.toString() << endl;
+
+    cout << "\nComparison:" << endl;
+
+    cout << "Equal: " << first.Equal(second) << endl;
+    cout << "Not equal: " << first.NotEqual(second) << endl;
+    cout << "Less: " << first.Less(second) << endl;
+    cout << "Greater: " << first.Greater(second) << endl;
+    cout << "Less or equal: " << first.LessOrEqual(second) << endl;
+    cout << "Greater or equal: " << first.GreaterOrEqual(second) << endl;
+
+    cout << "\nEnter first fraction:" << endl;
+    first.Read();
+
+    cout << "\nYour fraction: " << first.toString() << endl;
 
     return 0;
 }
