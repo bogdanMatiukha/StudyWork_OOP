@@ -4,6 +4,27 @@
 
 using namespace std;
 
+Fraction::Fraction()
+{
+    first = 0;
+    second = 0;
+}
+
+Fraction::Fraction(long f, unsigned short s)
+{
+    first = f;
+    second = s;
+}
+
+Fraction::Fraction(const Fraction& other)
+{
+    first = other.first;
+    second = other.second;
+}
+
+Fraction::~Fraction()
+{}
+
 void Fraction::Init(long f, unsigned short s)
 {
     first = f;

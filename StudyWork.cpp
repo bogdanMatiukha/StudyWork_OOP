@@ -6,13 +6,14 @@ using namespace std;
 int main()
 {
     Fraction first;
-    Fraction second;
+    Fraction second(2, 25);
+    Fraction third(second);
 
     first.Init(7, 50);
-    second.Init(2, 25);
 
     cout << "First fraction: " << first.toString() << endl;
     cout << "Second fraction: " << second.toString() << endl;
+    cout << "Third fraction: " << third.toString() << endl;
 
     Fraction sum = first.Add(second);
     Fraction difference = first.Subtract(second);

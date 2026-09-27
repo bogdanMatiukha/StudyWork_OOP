@@ -5,11 +5,15 @@ using namespace std;
 
 class Fraction
 {
-private:
     long first;
     unsigned short second;
 
 public:
+    Fraction();
+    Fraction(long f, unsigned short s);
+    Fraction(const Fraction& other);
+    ~Fraction();
+
     void Init(long f, unsigned short s);
     void Read();
     void Display();
