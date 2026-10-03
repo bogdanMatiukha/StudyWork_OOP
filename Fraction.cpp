@@ -55,7 +55,7 @@ string Fraction::toString()
     return sstring.str();
 }
 
-Fraction Fraction::Add(Fraction other)
+Fraction Fraction::operator+(const Fraction& other) const
 {
     Fraction result;
 
@@ -71,7 +71,7 @@ Fraction Fraction::Add(Fraction other)
     return result;
 }
 
-Fraction Fraction::Subtract(Fraction other)
+Fraction Fraction::operator-(const Fraction& other) const
 {
     Fraction result;
 
@@ -90,7 +90,7 @@ Fraction Fraction::Subtract(Fraction other)
     return result;
 }
 
-Fraction Fraction::Multiply(Fraction other)
+Fraction Fraction::operator*(const Fraction& other) const
 {
     Fraction result;
 
@@ -105,14 +105,65 @@ Fraction Fraction::Multiply(Fraction other)
     return result;
 }
 
-bool Fraction::Equal(Fraction other)
+bool Fraction::operator==(const Fraction& other) const
 {
     return first == other.first && second == other.second;
 }
 
+bool Fraction::operator!=(const Fraction& other) const
+{
+    return !(*this == other);
+}
+
+bool Fraction::operator<(const Fraction& other) const
+{
+    if (first < other.first)
+        return true;
+
+    if (first == other.first && second < other.second)
+        return true;
+
+    return false;
+}
+
+bool Fraction::operator>(const Fraction& other) const
+{
+    return other < *this;
+}
+
+bool Fraction::operator<=(const Fraction& other) const
+{
+    return *this < other || *this == other;
+}
+
+bool Fraction::operator>=(const Fraction& other) const
+{
+    return *this > other || *this == other;
+}
+
+Fraction Fraction::Add(Fraction other)
+{
+    return *this + other;
+}
+
+Fraction Fraction::Subtract(Fraction other)
+{
+    return *this - other;
+}
+
+Fraction Fraction::Multiply(Fraction other)
+{
+    return *this * other;
+}
+
+bool Fraction::Equal(Fraction other)
+{
+    return *this == other;
+}
+
 bool Fraction::NotEqual(Fraction other)
 {
-    return !Equal(other);
+    return !(*this == other);
 }
 
 bool Fraction::Less(Fraction other)

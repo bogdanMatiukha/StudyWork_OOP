@@ -19,6 +19,16 @@ public:
     void Display();
     string toString();
 
+    Fraction operator+(const Fraction& other) const;
+    Fraction operator-(const Fraction& other) const;
+    Fraction operator*(const Fraction& other) const;
+    bool operator==(const Fraction& other) const;
+    bool operator!=(const Fraction& other) const;
+    bool operator<(const Fraction& other) const;
+    bool operator>(const Fraction& other) const;
+    bool operator<=(const Fraction& other) const;
+    bool operator>=(const Fraction& other) const;
+
     Fraction Add(Fraction other);
     Fraction Subtract(Fraction other);
     Fraction Multiply(Fraction other);
