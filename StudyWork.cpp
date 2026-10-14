@@ -1,41 +1,85 @@
 #include <iostream>
-#include "Fraction.h"
+
+#include "Exceptions.h"
 
 using namespace std;
 
 int main()
 {
-    Fraction first;
-    Fraction second(2, 25);
-    Fraction third(second);
+    double a, b;
+    double angleA, angleB;
 
-    first.Init(7, 50);
+    cout << "Enter cathetus A: ";
+    cin >> a;
 
-    cout << "First fraction: " << first.toString() << endl;
-    cout << "Second fraction: " << second.toString() << endl;
-    cout << "Third fraction: " << third.toString() << endl;
+    cout << "Enter cathetus B: ";
+    cin >> b;
 
-    Fraction sum = first.Add(second);
-    Fraction difference = first.Subtract(second);
-    Fraction product = first.Multiply(second);
+    cout << "\n===== 1. Without exception specification =====\n";
 
-    cout << "\nAddition: " << sum.toString() << endl;
-    cout << "Subtraction: " << difference.toString() << endl;
-    cout << "Multiplication: " << product.toString() << endl;
+    try
+    {
+        calculateAngles1(a, b, angleA, angleB);
 
-    cout << "\nComparison:" << endl;
+        cout << "Angle A = " << angleA << " degrees\n";
+        cout << "Angle B = " << angleB << " degrees\n";
+    }
+    catch (const invalid_argument& e)
+    {
+        cout << "Caught exception: " << e.what() << endl;
+    }
 
-    cout << "Equal: " << first.Equal(second) << endl;
-    cout << "Not equal: " << first.NotEqual(second) << endl;
-    cout << "Less: " << first.Less(second) << endl;
-    cout << "Greater: " << first.Greater(second) << endl;
-    cout << "Less or equal: " << first.LessOrEqual(second) << endl;
-    cout << "Greater or equal: " << first.GreaterOrEqual(second) << endl;
+    cout << "\n===== 2. With throw() specification =====\n";
 
-    cout << "\nEnter first fraction:" << endl;
-    first.Read();
+    try
+    {
+        calculateAngles2(a, b, angleA, angleB);
 
-    cout << "\nYour fraction: " << first.toString() << endl;
+        cout << "Angle A = " << angleA << " degrees\n";
+        cout << "Angle B = " << angleB << " degrees\n";
+    }
+    catch (const exception& e)
+    {
+        cout << "Caught exception: " << e.what() << endl;
+    }
+    catch (...)
+    {
+        cout << "Caught unknown exception." << endl;
+    }
+
+    cout << "\n===== 3. With standard exception specification =====\n";
+
+    try
+    {
+        calculateAngles3(a, b, angleA, angleB);
+
+        cout << "Angle A = " << angleA << " degrees\n";
+        cout << "Angle B = " << angleB << " degrees\n";
+    }
+    catch (const invalid_argument& e)
+    {
+        cout << "Caught invalid_argument: " << e.what() << endl;
+    }
+    catch (const exception& e)
+    {
+        cout << "Caught standard exception: " << e.what() << endl;
+    }
+
+    cout << "\n===== 4. With custom exception =====\n";
+
+    try
+    {
+        calculateAngles4(a, b, angleA, angleB);
+
+        cout << "Angle A = " << angleA << " degrees\n";
+        cout << "Angle B = " << angleB << " degrees\n";
+    }
+    catch (const TriangleStandardException& e)
+    {
+        cout << "Caught custom exception: " << e.what() << endl;
+        cout << "Cathetus A = " << e.getA() << endl;
+        cout << "Cathetus B = " << e.getB() << endl;
+    }
 
     return 0;
 }
