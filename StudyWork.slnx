@@ -3,5 +3,6 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Project Path="Dll1/Dll1.vcxproj" Id="b01954a3-34f5-4ca2-b414-b5da1247f4f2" />
   <Project Path="StudyWork.vcxproj" Id="0d4e7752-fd41-45ad-9681-a90937e4bdbb" />
 </Solution>

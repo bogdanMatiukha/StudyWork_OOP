@@ -139,11 +139,12 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Fraction.cpp" />
     <ClCompile Include="StudyWork.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Fraction.h" />
+    <ProjectReference Include="Dll1\Dll1.vcxproj">
+      <Project>{b01954a3-34f5-4ca2-b414-b5da1247f4f2}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

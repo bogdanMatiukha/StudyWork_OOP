@@ -1,9 +1,13 @@
 #pragma once
 #include <string>
 
-using namespace std;
+#ifdef FRACTIONLIBRARY_EXPORTS
+#define FRACTION_API __declspec(dllexport)
+#else
+#define FRACTION_API __declspec(dllimport)
+#endif
 
-class Fraction
+class FRACTION_API Fraction
 {
     long first;
     unsigned short second;
@@ -17,11 +21,12 @@ public:
     void Init(long f, unsigned short s);
     void Read();
     void Display();
-    string toString();
+    std::string toString();
 
     Fraction operator+(const Fraction& other) const;
     Fraction operator-(const Fraction& other) const;
     Fraction operator*(const Fraction& other) const;
+
     bool operator==(const Fraction& other) const;
     bool operator!=(const Fraction& other) const;
     bool operator<(const Fraction& other) const;
