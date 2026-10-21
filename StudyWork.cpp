@@ -1,5 +1,6 @@
-#include <iostream>
 
+#include <iostream>
+#include <stdexcept>
 #include "Exceptions.h"
 
 using namespace std;
@@ -7,20 +8,27 @@ using namespace std;
 int main()
 {
     double a, b;
-    double angleA, angleB;
+    double angleA = 0, angleB = 0;
 
     cout << "Enter cathetus A: ";
-    cin >> a;
+    if (!(cin >> a))
+    {
+        cout << "Invalid input." << endl;
+        return 1;
+    }
 
     cout << "Enter cathetus B: ";
-    cin >> b;
+    if (!(cin >> b))
+    {
+        cout << "Invalid input." << endl;
+        return 1;
+    }
 
-    cout << "\n===== 1. Without exception specification =====\n";
+    cout << "\n1. Without exception specification\n";
 
     try
     {
         calculateAngles1(a, b, angleA, angleB);
-
         cout << "Angle A = " << angleA << " degrees\n";
         cout << "Angle B = " << angleB << " degrees\n";
     }
@@ -29,30 +37,23 @@ int main()
         cout << "Caught exception: " << e.what() << endl;
     }
 
-    cout << "\n===== 2. With throw() specification =====\n";
+    cout << "\n2. With noexcept\n";
 
-    try
+    if (calculateAngles2(a, b, angleA, angleB))
     {
-        calculateAngles2(a, b, angleA, angleB);
-
         cout << "Angle A = " << angleA << " degrees\n";
         cout << "Angle B = " << angleB << " degrees\n";
     }
-    catch (const exception& e)
+    else
     {
-        cout << "Caught exception: " << e.what() << endl;
-    }
-    catch (...)
-    {
-        cout << "Caught unknown exception." << endl;
+        cout << "Invalid catheti. Exception handled inside the function.\n";
     }
 
-    cout << "\n===== 3. With standard exception specification =====\n";
+    cout << "\n3. With noexcept(false) and standard exception\n";
 
     try
     {
         calculateAngles3(a, b, angleA, angleB);
-
         cout << "Angle A = " << angleA << " degrees\n";
         cout << "Angle B = " << angleB << " degrees\n";
     }
@@ -60,17 +61,40 @@ int main()
     {
         cout << "Caught invalid_argument: " << e.what() << endl;
     }
-    catch (const exception& e)
-    {
-        cout << "Caught standard exception: " << e.what() << endl;
-    }
 
-    cout << "\n===== 4. With custom exception =====\n";
+    cout << "\n4a. Empty custom exception\n";
 
     try
     {
-        calculateAngles4(a, b, angleA, angleB);
+        calculateAngles4a(a, b, angleA, angleB);
+        cout << "Angle A = " << angleA << " degrees\n";
+        cout << "Angle B = " << angleB << " degrees\n";
+    }
+    catch (const TriangleEmptyException&)
+    {
+        cout << "Caught empty custom exception.\n";
+    }
 
+    cout << "\n4b. Independent custom exception\n";
+
+    try
+    {
+        calculateAngles4b(a, b, angleA, angleB);
+        cout << "Angle A = " << angleA << " degrees\n";
+        cout << "Angle B = " << angleB << " degrees\n";
+    }
+    catch (const TriangleException& e)
+    {
+        cout << "Caught custom exception.\n";
+        cout << "Cathetus A = " << e.getA() << endl;
+        cout << "Cathetus B = " << e.getB() << endl;
+    }
+
+    cout << "\n4c. Exception derived from std::exception\n";
+
+    try
+    {
+        calculateAngles4c(a, b, angleA, angleB);
         cout << "Angle A = " << angleA << " degrees\n";
         cout << "Angle B = " << angleB << " degrees\n";
     }

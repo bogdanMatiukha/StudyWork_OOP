@@ -2,26 +2,25 @@
 
 #include <exception>
 
-void calculateAngles1(double a, double b, double& angleA, double& angleB);
-
-void calculateAngles2(double a, double b, double& angleA, double& angleB) throw();
-
-void calculateAngles3(double a, double b, double& angleA, double& angleB) noexcept(false);
-
-class EmptyException
+class TriangleEmptyException
 {};
 
 class TriangleException
 {
-public:
+private:
     double a;
     double b;
 
+public:
     TriangleException(double a, double b);
+
+    double getA() const;
+    double getB() const;
 };
 
 class TriangleStandardException : public std::exception
 {
+private:
     double a;
     double b;
 
@@ -34,4 +33,12 @@ public:
     double getB() const;
 };
 
-void calculateAngles4(double a, double b, double& angleA, double& angleB);
+void calculateAngles1(double a, double b, double& angleA, double& angleB);
+
+bool calculateAngles2(double a, double b, double& angleA, double& angleB) noexcept;
+
+void calculateAngles3(double a, double b, double& angleA, double& angleB) noexcept(false);
+
+void calculateAngles4a(double a, double b, double& angleA, double& angleB);
+void calculateAngles4b(double a, double b, double& angleA, double& angleB);
+void calculateAngles4c(double a, double b, double& angleA, double& angleB);
