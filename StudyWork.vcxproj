@@ -139,11 +139,11 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Exceptions.cpp" />
+    <ClCompile Include="Triad.cpp" />
     <ClCompile Include="StudyWork.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Exceptions.h" />
+    <ClInclude Include="Triad.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

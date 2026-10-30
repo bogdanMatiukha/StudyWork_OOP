@@ -18,12 +18,12 @@
     <ClCompile Include="StudyWork.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Exceptions.cpp">
+    <ClCompile Include="Triad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Exceptions.h">
+    <ClInclude Include="Triad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

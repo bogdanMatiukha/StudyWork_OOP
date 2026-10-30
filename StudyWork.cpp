@@ -1,85 +1,72 @@
 #include <iostream>
 
-#include "Exceptions.h"
+#include "Triad.h"
 
 using namespace std;
 
+Triad processTriad(Triad& value)
+{
+    value.increaseFirst();
+    value.increaseSecond();
+    value.increaseThird();
+
+    return value;
+}
+
 int main()
 {
-    double a, b;
-    double angleA, angleB;
+    cout << "===== Triad =====" << endl;
 
-    cout << "Enter cathetus A: ";
-    cin >> a;
+    Triad triad(1, 2, 3);
 
-    cout << "Enter cathetus B: ";
-    cin >> b;
+    cout << "Initial triad: ";
+    triad.print();
 
-    cout << "\n===== 1. Without exception specification =====\n";
+    triad.increaseFirst();
+    triad.increaseSecond();
+    triad.increaseThird();
 
-    try
-    {
-        calculateAngles1(a, b, angleA, angleB);
+    cout << "After increasing: ";
+    triad.print();
 
-        cout << "Angle A = " << angleA << " degrees\n";
-        cout << "Angle B = " << angleB << " degrees\n";
-    }
-    catch (const invalid_argument& e)
-    {
-        cout << "Caught exception: " << e.what() << endl;
-    }
+    cout << "\n===== Time =====" << endl;
 
-    cout << "\n===== 2. With throw() specification =====\n";
+    Time time(12, 30, 58);
 
-    try
-    {
-        calculateAngles2(a, b, angleA, angleB);
+    cout << "Initial time: ";
+    time.print();
 
-        cout << "Angle A = " << angleA << " degrees\n";
-        cout << "Angle B = " << angleB << " degrees\n";
-    }
-    catch (const exception& e)
-    {
-        cout << "Caught exception: " << e.what() << endl;
-    }
-    catch (...)
-    {
-        cout << "Caught unknown exception." << endl;
-    }
+    time.increaseThird();
 
-    cout << "\n===== 3. With standard exception specification =====\n";
+    cout << "After increasing seconds by 1: ";
+    time.print();
 
-    try
-    {
-        calculateAngles3(a, b, angleA, angleB);
+    time.increaseSeconds(125);
 
-        cout << "Angle A = " << angleA << " degrees\n";
-        cout << "Angle B = " << angleB << " degrees\n";
-    }
-    catch (const invalid_argument& e)
-    {
-        cout << "Caught invalid_argument: " << e.what() << endl;
-    }
-    catch (const exception& e)
-    {
-        cout << "Caught standard exception: " << e.what() << endl;
-    }
+    cout << "After increasing seconds by 125: ";
+    time.print();
 
-    cout << "\n===== 4. With custom exception =====\n";
+    time.increaseMinutes(10);
 
-    try
-    {
-        calculateAngles4(a, b, angleA, angleB);
+    cout << "After increasing minutes by 10: ";
+    time.print();
 
-        cout << "Angle A = " << angleA << " degrees\n";
-        cout << "Angle B = " << angleB << " degrees\n";
-    }
-    catch (const TriangleStandardException& e)
-    {
-        cout << "Caught custom exception: " << e.what() << endl;
-        cout << "Cathetus A = " << e.getA() << endl;
-        cout << "Cathetus B = " << e.getB() << endl;
-    }
+    cout << "\n===== Substitution principle =====" << endl;
+
+    Time anotherTime(10, 59, 59);
+
+    Triad& baseReference = anotherTime;
+
+    cout << "Before processing: ";
+    baseReference.print();
+
+    Triad result = processTriad(baseReference);
+
+    cout << "After processing: ";
+    baseReference.print();
+
+    cout << "Returned base object: ";
+    result.print();
 
     return 0;
 }
