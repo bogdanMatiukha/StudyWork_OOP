@@ -139,11 +139,11 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Triad.cpp" />
+    <ClCompile Include="Figure.cpp" />
     <ClCompile Include="StudyWork.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Triad.h" />
+    <ClInclude Include="Figure.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
