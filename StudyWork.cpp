@@ -1,38 +1,80 @@
-
 #include <iostream>
-#include "Figure.h"
+#include <iomanip>
+#include "Triangled.h"
 
 using namespace std;
 
 int main()
 {
-    cout << "===== Rectangle =====" << endl;
+    cout << fixed << setprecision(2);
 
-    Rectangle rectangle(10, 20, 100, 50);
+    cout << "===== Triangle by vertices =====" << endl;
 
-    cout << "\nInitial information:" << endl;
-    rectangle.printInfo();
+    TriangleByVertices triangle1(
+        0, 0,
+        4, 0,
+        0, 3
+    );
 
-    cout << "\n===== Show figure =====" << endl;
-    rectangle.show();
+    triangle1.printInfo();
 
-    cout << "\n===== Move figure =====" << endl;
-    rectangle.move(5, 10);
-    rectangle.hide();
-    rectangle.show();
+    cout << "\n===== Triangle by sides =====" << endl;
 
-    cout << "\n===== Rotate figure =====" << endl;
-    rectangle.rotate(45);
-    rectangle.hide();
-    rectangle.show();
+    TriangleBySides triangle2(5, 5, 6);
 
-    cout << "\n===== Hide figure =====" << endl;
-    rectangle.hide();
+    triangle2.printInfo();
 
-    rectangle.show();
-    rectangle.rotate(45);
-    rectangle.move(10, 5);
-    rectangle.hide();
+    cout << "\n===== Triangle by medians =====" << endl;
+
+    TriangleByMedians triangle3(5, 5, 6);
+
+    triangle3.printInfo();
+
+    cout << "\n===== Median calculation =====" << endl;
+
+    cout << "Median to side A: "
+        << triangle2.getMedian(1) << endl;
+
+    cout << "Median to side B: "
+        << triangle2.getMedian(2) << endl;
+
+    cout << "Median to side C: "
+        << triangle2.getMedian(3) << endl;
+
+    cout << "\n===== Midline calculation =====" << endl;
+
+    cout << "Midline parallel to side A: "
+        << triangle2.getMidline(1) << endl;
+
+    cout << "Midline parallel to side B: "
+        << triangle2.getMidline(2) << endl;
+
+    cout << "Midline parallel to side C: "
+        << triangle2.getMidline(3) << endl;
+
+    cout << "\n===== Right triangle =====" << endl;
+
+    RightTriangle rightTriangle(3, 4);
+
+    rightTriangle.printInfo();
+
+    cout << "\n===== Polymorphism =====" << endl;
+
+    Triangled* triangles[] =
+    {
+        &triangle1,
+        &triangle2,
+        &triangle3,
+        &rightTriangle
+    };
+
+    for (int i = 0; i < 4; i++)
+    {
+        cout << "\nTriangle " << i + 1 << ":" << endl;
+        triangles[i]->printInfo();
+    }
+
+    cout << "\n===== Program finished =====" << endl;
 
     return 0;
 }
